@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  submission_id: MyString
+  user_id: MyString
+  positive: false
+
+two:
+  submission_id: MyString
+  user_id: MyString
+  positive: false
