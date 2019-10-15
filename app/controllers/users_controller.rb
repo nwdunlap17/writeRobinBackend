@@ -7,7 +7,7 @@ class UsersController < ApplicationController
         if @user.save
             render json: @user
         else
-            byebug
+            # byebug
             render :json => {message: 'failure'}
         end
     end

@@ -19,7 +19,7 @@ class StoriesController < ApplicationController
             @story = Story.create(story_params)
             @submission = Submission.create(content: params[:content], user_id: @authorID, story_id: @story.id, position: 1, canon: true)
             @story.submissions << @submission
-            byebug
+            # byebug
             render :json => {story_id: @story.id}
         else
             byebug
