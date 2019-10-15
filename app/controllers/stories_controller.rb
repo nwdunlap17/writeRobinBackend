@@ -22,7 +22,7 @@ class StoriesController < ApplicationController
             # byebug
             render :json => {story_id: @story.id}
         else
-            byebug
+            # byebug
         end
     end
 
