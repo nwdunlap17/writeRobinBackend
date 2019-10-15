@@ -25,7 +25,7 @@ class AuthenticationController < ApplicationController
     params.permit(:username, :password)
   end
 
-    protected
+    # protected
 
     def json_request? 
         return request.format.json?

@@ -1,0 +1,82 @@
+Started GET "/" for ::1 at 2019-10-15 14:36:07 -0700
+  [1m[35m (3.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/flatironschool/.rvm/gems/ruby-2.6.1/gems/railties-6.0.0/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/flatironschool/.rvm/gems/ruby-2.6.1/gems/railties-6.0.0/lib/rails/templates/rails/welcome/index.html.erb (Duration: 16.5ms | Allocations: 481)
+Completed 200 OK in 43ms (Views: 28.6ms | ActiveRecord: 0.0ms | Allocations: 2752)
+
+
+Started GET "/stories" for ::1 at 2019-10-15 14:36:16 -0700
+Processing by StoriesController#index as HTML
+  [1m[36mStory Load (3.4ms)[0m  [1m[34mSELECT "stories".* FROM "stories"[0m
+  ↳ app/controllers/stories_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mSubmission Load (1.7ms)[0m  [1m[34mSELECT "submissions".* FROM "submissions" WHERE "submissions"."story_id" = $1[0m  [["story_id", "1"]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:10:in `map'
+[active_model_serializers]   [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:13:in `block in submissions'
+[active_model_serializers]   [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:13:in `block in submissions'
+[active_model_serializers]   [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:13:in `block in submissions'
+[active_model_serializers]   [1m[36mSubmission Load (0.4ms)[0m  [1m[34mSELECT "submissions".* FROM "submissions" WHERE "submissions"."story_id" = $1[0m  [["story_id", "2"]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:10:in `map'
+[active_model_serializers]   [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:13:in `block in submissions'
+[active_model_serializers]   [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:13:in `block in submissions'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:13:in `block in submissions'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:13:in `block in submissions'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:13:in `block in submissions'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:13:in `block in submissions'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:13:in `block in submissions'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:13:in `block in submissions'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:13:in `block in submissions'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:13:in `block in submissions'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:13:in `block in submissions'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:13:in `block in submissions'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:13:in `block in submissions'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:13:in `block in submissions'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:13:in `block in submissions'
+[active_model_serializers]   [1m[36mSubmission Load (0.4ms)[0m  [1m[34mSELECT "submissions".* FROM "submissions" WHERE "submissions"."story_id" = $1[0m  [["story_id", "3"]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:10:in `map'
+[active_model_serializers]   [1m[36mSubmission Load (0.4ms)[0m  [1m[34mSELECT "submissions".* FROM "submissions" WHERE "submissions"."story_id" = $1[0m  [["story_id", "4"]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:10:in `map'
+[active_model_serializers]   [1m[36mSubmission Load (0.4ms)[0m  [1m[34mSELECT "submissions".* FROM "submissions" WHERE "submissions"."story_id" = $1[0m  [["story_id", "5"]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:10:in `map'
+[active_model_serializers]   [1m[36mSubmission Load (0.4ms)[0m  [1m[34mSELECT "submissions".* FROM "submissions" WHERE "submissions"."story_id" = $1[0m  [["story_id", "6"]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:10:in `map'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:13:in `block in submissions'
+[active_model_serializers]   [1m[36mSubmission Load (0.3ms)[0m  [1m[34mSELECT "submissions".* FROM "submissions" WHERE "submissions"."story_id" = $1[0m  [["story_id", "7"]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:10:in `map'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:13:in `block in submissions'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:13:in `block in submissions'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:13:in `block in submissions'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:13:in `block in submissions'
+[active_model_serializers]   [1m[36mSubmission Load (0.3ms)[0m  [1m[34mSELECT "submissions".* FROM "submissions" WHERE "submissions"."story_id" = $1[0m  [["story_id", "8"]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:10:in `map'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:13:in `block in submissions'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/serializers/story_serializer.rb:13:in `block in submissions'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (162.23ms)
+Completed 200 OK in 257ms (Views: 203.4ms | ActiveRecord: 28.2ms | Allocations: 56759)
+
+

@@ -18,7 +18,7 @@ class UsersController < ApplicationController
         params.require(:user).permit(:username,:password)
     end
 
-    protected
+    # protected
 
     def json_request? 
         return request.format.json?
