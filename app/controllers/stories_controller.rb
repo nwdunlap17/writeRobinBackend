@@ -56,10 +56,4 @@ class StoriesController < ApplicationController
     def story_params
         params.require(:story).permit(:title, :public, :user_id)
     end
-
-#     protected
-
-    def json_request? 
-        return request.format.json?
-    end
 end
