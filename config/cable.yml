@@ -5,6 +5,12 @@ test:
   adapter: test
 
 production:
-  adapter: redis
-  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
-  channel_prefix: write_robin_backend_production
+  # adapter: redis
+  # url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
+  # channel_prefix: write_robin_backend_production
+  :url: redis://redistogo:38ef41e5c186cc4639062039709febb5@crestfish.redistogo.com:10609/
+  :host: crestfish.redistogo.com
+  :port: 10609
+  :password: 38ef41e5c186cc4639062039709febb5
+  :inline: true
+  :timeout: 1

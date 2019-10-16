@@ -14,7 +14,7 @@ class AuthenticationController < ApplicationController
       render json: { token: token, username: @user.username }, status: :ok
     
     else
-    byebug
+    # byebug
       render json: { error: 'unauthorized' }, status: :unauthorized
     end
   end

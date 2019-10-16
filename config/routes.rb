@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  mount ActionCable.server => '/cable'
+  mount ActionCable.server, at: '/cable'
 
   get '/home/stories', to: 'stories#public_index'
   get '/stories/:id/test', to: 'stories#testBroadcast'
