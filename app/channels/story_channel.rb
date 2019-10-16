@@ -7,7 +7,7 @@ class StoryChannel < ApplicationCable::Channel
   end
 
   def received(data)
-    byebug
+    # byebug
     StoryChannel.broadcast_to(@story, {story: @story, message: 'Hello There!'})
   end
 
