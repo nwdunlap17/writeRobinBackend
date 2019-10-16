@@ -8,7 +8,7 @@ class AuthenticationController < ApplicationController
     # byebug
     if @user&.authenticate(params[:password])
     # byebug
-      token = JWT.encode({user_id: @user.id},'secret')
+      token = JWT.encode({user_id: @user.id},'5KgjiJMXTmi0jvOzwfsp')
       # time = Time.now + 24.hours.to_i
       # byebug
       render json: { token: token, username: @user.username }, status: :ok

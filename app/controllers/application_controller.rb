@@ -4,7 +4,7 @@ class ApplicationController < ActionController::API
   def get_user_from_token
       token = auth_header.split(' ')[1]
       if token != 'null'
-        result = JWT.decode(token, 'secret', true, algorithm: 'HS256')
+        result = JWT.decode(token, '5KgjiJMXTmi0jvOzwfsp', true, algorithm: 'HS256')
         
         result[0]['user_id']
       else
@@ -22,7 +22,7 @@ class ApplicationController < ActionController::API
       token = auth_header.split(' ')[1]
       # header: { 'Authorization': 'Bearer <token>' }
       begin
-        JWT.decode(token, 'secret', true, algorithm: 'HS256')
+        JWT.decode(token, '5KgjiJMXTmi0jvOzwfsp', true, algorithm: 'HS256')
       rescue JWT::DecodeError
         nil
       end
