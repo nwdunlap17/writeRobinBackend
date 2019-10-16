@@ -4,7 +4,7 @@ class AuthenticationController < ApplicationController
 
   # POST /auth/login
   def login
-    userList = User.where('lower(username) = ?', params[:username])
+    userList = User.where('lower(username) = ?', params[:username].downcase)
     @user
 
     if userList.length > 0
