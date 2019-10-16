@@ -4,13 +4,17 @@ class AuthenticationController < ApplicationController
 
   # POST /auth/login
   def login
-    @user = User.find_by(username: params[:username])
-    # byebug
+    userList = User.where('lower(username) = ?', params[:username])
+    @user
+
+    if userList.length > 0
+      @user = userList[0]
+    end
+
     if @user&.authenticate(params[:password])
-    # byebug
+
       token = JWT.encode({user_id: @user.id},'5KgjiJMXTmi0jvOzwfsp')
-      # time = Time.now + 24.hours.to_i
-      # byebug
+
       render json: { token: token, username: @user.username }, status: :ok
     
     else
