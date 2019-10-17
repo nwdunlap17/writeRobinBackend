@@ -14,6 +14,10 @@ class Story < ApplicationRecord
         return total
     end
 
+    def current_length
+        return self.canon.length
+    end
+
     def check_for_promotion
         required = self.required_votes()
         promoted = self.submissions.where('CANON = false').find do |sub|

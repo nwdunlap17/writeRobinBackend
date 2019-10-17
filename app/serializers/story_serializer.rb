@@ -1,7 +1,7 @@
 
 
 class StorySerializer < ActiveModel::Serializer
-  attributes :id, :submissions, :title
+  attributes :id, :submissions, :title, :length, :current_length
 
   def submissions      
       subs = object.submissions
@@ -11,7 +11,7 @@ class StorySerializer < ActiveModel::Serializer
       subs = subs.sort do |a,b|
         b.tally_votes <=> a.tally_votes
       end
-      
+
       subs = subs.map do |sub|
         
         hash = sub.attributes
@@ -30,5 +30,5 @@ class StorySerializer < ActiveModel::Serializer
 end
 
 class GroupStorySerializer < StorySerializer
-  attributes :id, :title
+  attributes :id, :title, :length, :current_length
 end
