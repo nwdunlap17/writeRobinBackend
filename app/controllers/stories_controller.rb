@@ -10,7 +10,7 @@ class StoriesController < ApplicationController
     def public_index
         @stories = Story.where('PUBLIC = true')
         @stories = @stories.sort do |a,b|
-            a.score <=> b.score
+            b.score <=> a.score
         end
         render json: @stories, each_serializer: GroupStorySerializer
     end
