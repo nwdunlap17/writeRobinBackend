@@ -50,8 +50,6 @@ class StoriesController < ApplicationController
         @story.content += " " + toAdd
         @story.save
 
-
-
         render :json => {message: 'done'}
     end
 

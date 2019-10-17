@@ -20,6 +20,10 @@ class StorySerializer < ActiveModel::Serializer
         hash
       end
 
+      subs = subs.sort do |a,b|
+        b.tally_votes <=> a.tally_votes
+      end
+
       return subs
   end
 end
