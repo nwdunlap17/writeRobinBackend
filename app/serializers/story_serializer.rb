@@ -7,6 +7,11 @@ class StorySerializer < ActiveModel::Serializer
       subs = object.submissions
       user_id = instance_options[:user_id]
 
+
+      subs = subs.sort do |a,b|
+        b.tally_votes <=> a.tally_votes
+      end
+      
       subs = subs.map do |sub|
         
         hash = sub.attributes
@@ -18,10 +23,6 @@ class StorySerializer < ActiveModel::Serializer
         end
 
         hash
-      end
-
-      subs = subs.sort do |a,b|
-        b.tally_votes <=> a.tally_votes
       end
 
       return subs
