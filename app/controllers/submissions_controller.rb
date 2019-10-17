@@ -12,6 +12,7 @@ class SubmissionsController < ApplicationController
         @submit.user_id = user
         @submit.save
         @story   = Story.find(params[:submission][:story_id])
+        Vote.create(submission_id: @submit.id, user_id: user, positive: true)   
 
         StoryChannel.broadcast_to(@story, {message:'submission',submission:@submit})
         render :json => {foo: 'bar'}

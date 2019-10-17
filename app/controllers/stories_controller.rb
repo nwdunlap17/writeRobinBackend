@@ -8,8 +8,11 @@ class StoriesController < ApplicationController
     end
 
     def public_index
-        @story = Story.where('PUBLIC = true')
-        render json: @story, each_serializer: GroupStorySerializer
+        @stories = Story.where('PUBLIC = true')
+        @stories = @stories.sort do |a,b|
+            a.score <=> b.score
+        end
+        render json: @stories, each_serializer: GroupStorySerializer
     end
 
     def create
@@ -18,6 +21,7 @@ class StoriesController < ApplicationController
             params[:story][:user_id] = @authorID
             @story = Story.create(story_params)
             @submission = Submission.create(content: params[:content], user_id: @authorID, story_id: @story.id, position: 1, canon: true)
+            Vote.create(submission_id: @submission.id, user_id: @authorID, positive: true)   
             @story.submissions << @submission
             # byebug
             render :json => {story_id: @story.id}

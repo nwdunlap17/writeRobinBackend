@@ -2,6 +2,18 @@ class Story < ApplicationRecord
     belongs_to :user
     has_many :submissions
 
+    def canon
+        return self.submissions.where('CANON = true')
+    end
+
+    def score
+        total = 0
+        self.canon.each do |part|
+            total += part.tally_votes
+        end
+        return total
+    end
+
     def check_for_promotion
         required = self.required_votes()
         promoted = self.submissions.where('CANON = false').find do |sub|
