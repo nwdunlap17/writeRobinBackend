@@ -7,7 +7,6 @@ class StorySerializer < ActiveModel::Serializer
       subs = object.submissions
       user_id = instance_options[:user_id]
 
-
       subs = subs.sort do |a,b|
         b.tally_votes <=> a.tally_votes
       end
@@ -29,6 +28,6 @@ class StorySerializer < ActiveModel::Serializer
   end
 end
 
-class GroupStorySerializer < StorySerializer
-  attributes :id, :title, :length, :current_length
+class GroupStorySerializer < ActiveModel::Serializer
+  attributes :id, :title, :length, :current_length, :score
 end
