@@ -62,16 +62,23 @@ class Story < ApplicationRecord
 
     def increment_unique_voters?(userID)
         # byebug 
-        if (!check_if_user_unique(userID))
+        if (check_if_user_unique(userID))
             self.round_unique_users += 1
             self.save
+        end
+    end
 
+    def decrement_unique_voters?(userID)
+        # If the user no longer exists, decrement the vote
+        if (!check_if_user_unique(userID))
+            self.round_unique_users -= 1
+            self.save
         end
     end
 
     def check_if_user_unique(userID)
         self.submissions.where('CANON = false').each do |sub|
-           if (!!sub.votes.find_by(user_id: userID))
+           if (!!sub.votes.find_by(user_id: userID) || sub.user_id == userID)
                 return false
             end
         end
@@ -94,4 +101,15 @@ class Story < ApplicationRecord
         end
     end
     
+    def unique_user_recount
+        hash = {}
+        self.submissions.where('CANON = false').each do |sub|
+            hash[sub.user_id] = true;
+            sub.votes.each do |vote|
+                hash[vote.user_id] = true;
+            end
+        end
+        self.round_unique_users = hash.keys.length
+        self.save
+    end
 end

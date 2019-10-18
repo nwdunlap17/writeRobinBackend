@@ -7,14 +7,16 @@ class SubmissionsController < ApplicationController
     end
 
     def create
-        user = get_user_from_token
-        @submit = Submission.new(sub_params)        
-        @submit.user_id = user
-        @submit.save
         @story   = Story.find(params[:submission][:story_id])
-        Vote.create(submission_id: @submit.id, user_id: user, positive: true)   
+        if (@story.length != @story.current_length){
+            user = get_user_from_token
+            @submit = Submission.new(sub_params)        
+            @submit.user_id = user
+            @submit.save
+            Vote.create(submission_id: @submit.id, user_id: user, positive: true)   
 
-        StoryChannel.broadcast_to(@story, {message:'submission',submission:@submit})
+            StoryChannel.broadcast_to(@story, {message:'submission',submission:@submit})
+        }
         render :json => {foo: 'bar'}
     end
 
@@ -48,7 +50,8 @@ class SubmissionsController < ApplicationController
             end
         else
             @vote = @submission.votes.find_by(user_id: @user_id)
-            @vote.destroy   
+            @vote.destroy 
+            @story.decrement_unique_voters?(@user_id)
         end
 
         render :json => {message: 'vote successful'}
