@@ -6,6 +6,6 @@ class SubmissionSerializer < ActiveModel::Serializer
   end
 
   def score
-    return object.tally_votes
+    return 12#object.tally_votes
   end
 end
