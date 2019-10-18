@@ -8,7 +8,7 @@ class SubmissionsController < ApplicationController
 
     def create
         @story   = Story.find(params[:submission][:story_id])
-        if (@story.length != @story.current_length){
+        if (@story.length != @story.current_length)
             user = get_user_from_token
             @submit = Submission.new(sub_params)        
             @submit.user_id = user
@@ -16,7 +16,7 @@ class SubmissionsController < ApplicationController
             Vote.create(submission_id: @submit.id, user_id: user, positive: true)   
 
             StoryChannel.broadcast_to(@story, {message:'submission',submission:@submit})
-        }
+        end
         render :json => {foo: 'bar'}
     end
 
