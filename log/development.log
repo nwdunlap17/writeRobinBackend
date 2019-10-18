@@ -85,3 +85,5 @@ Completed 200 OK in 257ms (Views: 203.4ms | ActiveRecord: 28.2ms | Allocations: 
   [1m[36mVote Load (6.1ms)[0m  [1m[34mSELECT "votes".* FROM "votes" WHERE "votes"."submission_id" = $1[0m  [["submission_id", "1"]]
   [1m[36mSubmission Load (0.6ms)[0m  [1m[34mSELECT "submissions".* FROM "submissions" ORDER BY "submissions"."id" ASC LIMIT $1 OFFSET $2[0m  [["LIMIT", 1], ["OFFSET", 1]]
   [1m[36mVote Load (0.5ms)[0m  [1m[34mSELECT "votes".* FROM "votes" WHERE "votes"."submission_id" = $1[0m  [["submission_id", "2"]]
+  [1m[36mSubmission Load (0.5ms)[0m  [1m[34mSELECT "submissions".* FROM "submissions" ORDER BY "submissions"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mSubmission Load (2.9ms)[0m  [1m[34mSELECT "submissions".* FROM "submissions" ORDER BY "submissions"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
