@@ -1,7 +1,7 @@
 
 
 class StorySerializer < ActiveModel::Serializer
-  attributes :id, :submissions, :title, :length, :current_length
+  attributes :id, :submissions, :title, :length, :current_length, :genres
 
   def submissions      
       subs = object.submissions
@@ -29,5 +29,5 @@ class StorySerializer < ActiveModel::Serializer
 end
 
 class GroupStorySerializer < ActiveModel::Serializer
-  attributes :id, :title, :length, :current_length, :score
+  attributes :id, :title, :length, :current_length, :score, :genres
 end

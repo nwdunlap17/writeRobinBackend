@@ -29,6 +29,9 @@ class StoriesController < ApplicationController
             @submission = Submission.create(content: params[:content], user_id: @authorID, story_id: @story.id, position: 1, canon: true)
             Vote.create(submission_id: @submission.id, user_id: @authorID, positive: true)   
             @story.submissions << @submission
+            params[:story][:genres].each do |genre|
+                GenreTag.create(story_id: @story.id, genre_id: genre)
+            end
             # byebug
             render :json => {story_id: @story.id}
         else
