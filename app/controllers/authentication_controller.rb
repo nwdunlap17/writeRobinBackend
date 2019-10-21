@@ -4,20 +4,14 @@ class AuthenticationController < ApplicationController
 
   # POST /auth/login
   def login
-    puts 'LOGGING IN'
     userList = User.where('lower(username) = ?', params[:username].downcase)
     @user
-
-
 
     if userList.length > 0
       @user = userList[0]
     end
-    puts 'AUTHENTICATING'
 
     if @user&.authenticate(params[:password])
-
-      puts "AUTHENTICATED USER #{@user.id}"
 
       token = JWT.encode({user_id: @user.id},'5KgjiJMXTmi0jvOzwfsp')
 
@@ -26,12 +20,10 @@ class AuthenticationController < ApplicationController
         @admin = @user.admin
       end
 
-      puts "RENDERING JSON"
       render json: { token: token, username: @user.username, admin: @admin }, status: :ok
     
     else
     # byebug
-      puts 'AUTHENTICATION FAILED'
       render json: { error: 'unauthorized' }, status: :unauthorized
     end
   end
