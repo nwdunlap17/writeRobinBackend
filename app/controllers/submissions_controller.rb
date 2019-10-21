@@ -57,12 +57,13 @@ class SubmissionsController < ApplicationController
         render :json => {message: 'vote successful'}
     end
 
-    def delete
-        puts 'Delete hit'
-    end
-
     def destroy
-        puts 'Destroy hit'
+        @userID = get_user_from_token
+        @submission = Submission.find(params[:id])
+        if( @submission.user_id == @userID)
+            @submission.destroy
+        end
+        render :json => {status: 'complete'}
     end
 
     private
