@@ -58,12 +58,12 @@ class SubmissionsController < ApplicationController
     end
 
     def destroy
-        @userID = get_user_from_token
+        @userID = get_user_from_token.to_i
         @submission = Submission.find(params[:id])
         puts 'DESTORY THIS'
         puts 'USER IS ' + @userID
-        puts "SUB IS " + @submission.id
-        if( @submission.user_id == @userID)
+        puts "SUB IS " + @submission.id.to_i
+        if( @submission.user_id.to_i == @userID)
             @submission.destroy
         end
         render :json => {status: 'complete'}
