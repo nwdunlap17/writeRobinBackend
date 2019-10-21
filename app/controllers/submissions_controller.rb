@@ -60,6 +60,9 @@ class SubmissionsController < ApplicationController
     def destroy
         @userID = get_user_from_token
         @submission = Submission.find(params[:id])
+        puts 'DESTORY THIS'
+        puts 'USER IS ' + @userID
+        puts "SUB IS " + @submission.id
         if( @submission.user_id == @userID)
             @submission.destroy
         end
