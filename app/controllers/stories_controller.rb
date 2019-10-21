@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
 
-    skip_before_action :authorized, only: [:view, :index, :public_index]
+    skip_before_action :authorized, only: [:view, :index, :public_index, :getGenres]
     
     def index
         @stories = Story.all
@@ -13,6 +13,12 @@ class StoriesController < ApplicationController
             b.score <=> a.score
         end
         render json: @stories, each_serializer: GroupStorySerializer
+    end
+
+    def getGenres
+        @genres = Genre.all
+
+        render :json => {genres: @genres}
     end
 
     def create

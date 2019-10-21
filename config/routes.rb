@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get '/home/stories', to: 'stories#public_index'
   get '/stories/:id/test', to: 'stories#testBroadcast'
+  get '/stories/genres', to: 'stories#getGenres'
   post '/stories/:id/append', to: 'stories#append'
   post '/view-story/:id', to: 'stories#view'
 
