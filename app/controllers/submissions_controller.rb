@@ -57,6 +57,14 @@ class SubmissionsController < ApplicationController
         render :json => {message: 'vote successful'}
     end
 
+    def delete
+        puts 'Delete hit'
+    end
+
+    def destroy
+        puts 'Destroy hit'
+    end
+
     private
 
     def sub_params
