@@ -1,6 +1,8 @@
 class Story < ApplicationRecord
     belongs_to :user
     has_many :submissions
+    has_many :genre_tags
+    has_many :genres, through: :genre_tags
 
     def canon
         return self.submissions.where('CANON = true')

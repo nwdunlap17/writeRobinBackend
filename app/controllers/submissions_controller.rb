@@ -7,7 +7,7 @@ class SubmissionsController < ApplicationController
     end
 
     def create
-        @story   = Story.find(params[:submission][:story_id])
+        @story = Story.find(params[:submission][:story_id])
         if (@story.length != @story.current_length)
             user = get_user_from_token
             @submit = Submission.new(sub_params)        
