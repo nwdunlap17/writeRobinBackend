@@ -60,7 +60,7 @@ class SubmissionsController < ApplicationController
     def destroy
         @userID = get_user_from_token.to_i
         @submission = Submission.find(params[:id].to_i)
-        @story = Story.find(@submission.id)
+        @story = Story.find(@submission.story_id)
         if( @submission.user_id.to_i == @userID)
             @submission.destroy
             StoryChannel.broadcast_to(@story, {message:'delete submission', id: params[:id]})
