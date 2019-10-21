@@ -29,5 +29,5 @@ class StorySerializer < ActiveModel::Serializer
 end
 
 class GroupStorySerializer < ActiveModel::Serializer
-  attributes :id#, :title, :length, :current_length, :score, :genres
+  attributes :id, :title, :length, :current_length, :score, :genres
 end
