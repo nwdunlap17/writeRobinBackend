@@ -15,7 +15,12 @@ class AuthenticationController < ApplicationController
 
       token = JWT.encode({user_id: @user.id},'5KgjiJMXTmi0jvOzwfsp')
 
-      render json: { token: token, username: @user.username }, status: :ok
+      admin = false
+      if !!@user.admin
+        admin = @user.admin
+      end
+
+      render json: { token: token, username: @user.username, admin: admin }, status: :ok
     
     else
     # byebug
