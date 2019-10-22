@@ -14,13 +14,16 @@ class UsersController < ApplicationController
     end
 
     def profile
+        puts 'USER PROFILE'
         @user = User.find(params[:id])
         currentUserID = get_user_from_token
 
         if @user.id == currentUserID
+            puts 'CURRENT USER'
             #self
             render :json => {username:@user.username, id:@user.id, friends: currentUserID.friends}
         else
+            puts 'OTHER USER'
             #other user
             isFriends = false
             currentUserID.friends.each do |friend|
@@ -29,6 +32,7 @@ class UsersController < ApplicationController
                     break
                 end
             end
+            puts 'HANDLED FRIENDS'
             render :json => {username:@user.username, id:@user.id , friended: isFriends}
         end
 
