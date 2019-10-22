@@ -21,12 +21,12 @@ class UsersController < ApplicationController
         if @user.id == currentUserID
             puts 'CURRENT USER'
             #self
-            render :json => {username:@user.username, id:@user.id, friends: currentUserID.friends}
+            render :json => {username:@user.username, id:@user.id, friends: User.find(currentUserID).friends}
         else
             puts 'OTHER USER'
             #other user
             isFriends = false
-            currentUserID.friends.each do |friend|
+            User.find(currentUserID).friends.each do |friend|
                 if friend.id == @user.id
                     isFriends = true
                     break
