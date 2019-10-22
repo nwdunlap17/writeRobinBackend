@@ -1,5 +1,3 @@
-
-
 class StorySerializer < ActiveModel::Serializer
   attributes :id, :submissions, :title, :length, :current_length, :genres
 

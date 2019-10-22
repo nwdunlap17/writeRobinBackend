@@ -135,3 +135,8 @@ Migrating to CreateGenreTags (20191021200339)
   [1m[36mGenre Create (0.3ms)[0m  [1m[32mINSERT INTO "genres" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Drama"], ["created_at", "2019-10-21 20:11:57.990240"], ["updated_at", "2019-10-21 20:11:57.990240"]]
   [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
   [1m[36mGenre Load (0.4ms)[0m  [1m[34mSELECT "genres".* FROM "genres" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mVote Load (7.7ms)[0m  [1m[34mSELECT "votes".* FROM "votes" WHERE (positive = true) LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mVote Load (0.7ms)[0m  [1m[34mSELECT "votes".* FROM "votes" WHERE (positive = true or positive = false) LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mVote Load (0.8ms)[0m  [1m[34mSELECT "votes".* FROM "votes" WHERE (positive = TRUE or positive = TRUE) LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mVote Load (0.9ms)[0m  [1m[34mSELECT "votes".* FROM "votes" WHERE (positive = TRUE or positive = TRUE) LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mVote Load (0.8ms)[0m  [1m[34mSELECT "votes".* FROM "votes" WHERE (positive = TRUE or positive = FALSE) LIMIT $1[0m  [["LIMIT", 11]]

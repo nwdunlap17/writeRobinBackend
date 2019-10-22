@@ -13,6 +13,27 @@ class UsersController < ApplicationController
         end
     end
 
+    def profile
+        @user = User.find(params[:id])
+        currentUserID = get_user_from_token
+
+        if @user.id == currentUserID
+            #self
+            render :json => {friends: currentUserID.friends}
+        else
+            #other user
+            isFriends? = false
+            currentUserID.friends.each do |friend|
+                if friend.id == @user.id
+                    isFriends? = true
+                    break
+                end
+            end
+            render :json => {friended: isFriends?}
+        end
+
+    end
+
     private
 
     def user_params 
