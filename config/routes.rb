@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   post '/submission-vote', to: 'submissions#vote'
   
   post '/users/:id/profile/', to: 'users#profile'
+  post '/users/:id/friend', to: 'users#friend'
+  post '/users/:id/unfriend', to: 'users#unfriend'
 
   resources :submissions
   # resources :votes

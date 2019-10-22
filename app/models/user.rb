@@ -3,7 +3,7 @@ class User < ApplicationRecord
     validates :username, presence: true, uniqueness: { case_sensitive: false }
     has_many :friendships
 
-    def friends 
+    def friends_hash 
         all_ships = Friendship.where('USER1 = ? or USER2 = ?',self.id,self.id)
         
         friend_ids_hash = {}
@@ -16,6 +16,12 @@ class User < ApplicationRecord
             end
         end
 
+        return friend_ids_hash
+    end
+
+    def friends 
+        friend_ids_hash = self.friends_hash
+
         friends = []
 
         friend_ids_hash.keys do |key|
@@ -24,5 +30,13 @@ class User < ApplicationRecord
         end
 
         return friends
+    end
+
+    def is_friends_with(userID)
+        if (!!self.friends_hash[userID])
+            return true
+        else
+            return false
+        end
     end
 end

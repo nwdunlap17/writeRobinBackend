@@ -38,6 +38,25 @@ class UsersController < ApplicationController
 
     end
 
+    def friend
+        friender = User.find(get_user_from_token)
+        to_friend = User.find(params[:id].to_i)
+
+        if (!friender.is_friends_with(params[:id]))
+            Friendship.create(user1: friender.id, user2: to_friend.id)
+        end
+    end
+
+    def unfriend
+        friender = User.find(get_user_from_token)
+        to_friend = User.find(params[:id].to_i)
+
+        if (friender.is_friends_with(params[:id]))
+            Friendship.where('(USER1 = ? or USER2 = ?) and (USER1 = ? or USER2 = ?)',friender.id,friender.id,to_friend.id,to_friend.id)[0].destroy
+        end
+
+    end
+
     private
 
     def user_params 
