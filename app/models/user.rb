@@ -33,6 +33,7 @@ class User < ApplicationRecord
     end
 
     def is_friends_with(userID)
+        userID = userID.to_i
         puts "userID class is #{userID.class}"
         puts "#{self.id} friends with #{userID}?"
         if (!!self.friends_hash[userID])
