@@ -9,11 +9,11 @@ class User < ApplicationRecord
         friend_ids_hash = {}
 
         all_ships.each do |ship|
-            if(ship.user1 == self.id){
+            if(ship.user1 == self.id)
                 friend_ids_hash[ship.user2] = true
-            } else {
+            else 
                 friend_ids_hash[ship.user1] = true
-            }
+            end
         end
 
         friends = []
