@@ -22,14 +22,14 @@ class UsersController < ApplicationController
             render :json => {username:@user.username, id:@user.id, friends: currentUserID.friends}
         else
             #other user
-            isFriends? = false
+            isFriends = false
             currentUserID.friends.each do |friend|
                 if friend.id == @user.id
-                    isFriends? = true
+                    isFriends = true
                     break
                 end
             end
-            render :json => {username:@user.username, id:@user.id , friended: isFriends?}
+            render :json => {username:@user.username, id:@user.id , friended: isFriends}
         end
 
     end
