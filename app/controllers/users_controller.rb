@@ -14,28 +14,23 @@ class UsersController < ApplicationController
     end
 
     def profile
-        puts 'USER PROFILE'
         @user = User.find(params[:id])
         currentUserID = get_user_from_token
 
         if @user.id == currentUserID
-            puts 'CURRENT USER'
             #self
             render :json => {username:@user.username, id:@user.id, friends: User.find(currentUserID).friends}
         else
-            puts 'OTHER USER'
             #other user
             currentUser = User.find(currentUserID)
             isFriends = currentUser.is_friends_with(params[:id])
-            puts "#{currentUser.username} - id: #{currentUserID} friends with #{params[:id]}?"
-            puts "IS FRIENDS = #{isFriends}"
+
             render :json => {username:@user.username, id:@user.id , friended: isFriends}
         end
 
     end
 
     def friend
-        puts 'FRIENDING'
         friender = User.find(get_user_from_token)
         to_friend = User.find(params[:id].to_i)
 
