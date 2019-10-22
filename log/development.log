@@ -150,3 +150,10 @@ Migrating to CreateFriendships (20191022164452)
   [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
   [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(1141411603499226675)[0m
   [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFriendship Create (4.5ms)[0m  [1m[32mINSERT INTO "friendships" ("user1", "user2", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user1", 4], ["user2", 5], ["created_at", "2019-10-22 20:48:31.458164"], ["updated_at", "2019-10-22 20:48:31.458164"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mFriendship Load (1.8ms)[0m  [1m[34mSELECT "friendships".* FROM "friendships" WHERE (USER1 = 4 or USER2 = 4)[0m
+  [1m[36mFriendship Load (0.8ms)[0m  [1m[34mSELECT "friendships".* FROM "friendships" WHERE (USER1 = 4 or USER2 = 4)[0m
+  [1m[36mFriendship Load (0.7ms)[0m  [1m[34mSELECT "friendships".* FROM "friendships" WHERE (USER1 = 4 or USER2 = 4)[0m
