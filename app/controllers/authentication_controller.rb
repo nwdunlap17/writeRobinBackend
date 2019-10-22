@@ -20,7 +20,7 @@ class AuthenticationController < ApplicationController
         @admin = @user.admin
       end
 
-      render json: { token: token, username: @user.username, admin: @admin }, status: :ok
+      render json: { token: token, username: @user.username, id:@user.id, admin: @admin }, status: :ok
     
     else
     # byebug
