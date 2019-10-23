@@ -20,16 +20,15 @@ class User < ApplicationRecord
     end
 
     def friends 
-        friend_ids_hash = self.friends_hash
 
         friends = []
 
-        friend_ids_hash.keys do |key|
+        self.friends_hash.keys.each do |key|
             friend =  User.find(key)
             friends.push({username: friend.username, id: friend.id})
         end
 
-        return friends_ids_hash.keys
+        return friends
     end
 
     def is_friends_with(userID)
