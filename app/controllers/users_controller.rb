@@ -16,8 +16,8 @@ class UsersController < ApplicationController
     def profile
         puts 'XJ9'
         @user = User.find(params[:id])
+        currentUserID = get_user_from_token
         render :json => {foo: 'bar'}
-        # currentUserID = get_user_from_token
 
         # if @user.id == currentUserID
         #     #self
