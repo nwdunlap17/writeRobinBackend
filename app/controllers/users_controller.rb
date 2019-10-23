@@ -54,6 +54,9 @@ class UsersController < ApplicationController
     def friend_search
         @user = User.find(get_user_from_token)
         search = params[:search].downcase
+        
+        puts @user.username
+        puts @user.friends
 
         results = @user.friends.filter do |friend|
             puts "#{friend.username} includes #{search}?"
