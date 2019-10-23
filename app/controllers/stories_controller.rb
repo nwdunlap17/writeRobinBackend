@@ -16,7 +16,9 @@ class StoriesController < ApplicationController
     end
 
     def getGenres
-        @genres = Genre.all
+        @genres = Genre.all.filter do |genre|
+            genre.name != 'Private'
+        end
 
         render :json => {genres: @genres}
     end
@@ -32,7 +34,12 @@ class StoriesController < ApplicationController
             params[:story][:genres].each do |genre|
                 GenreTag.create(story_id: @story.id, genre_id: genre)
             end
-            # byebug
+            if (!@story.public)
+                GenreTag.create(story_id: @story.id, genre_id:6)
+                params[:invites].each do |invite|
+                    Invitation.create(story_id: @story.id, user_id: invite)
+                end
+            end
             render :json => {story_id: @story.id}
         else
             # byebug
@@ -46,11 +53,24 @@ class StoriesController < ApplicationController
         # byebug
 
         # For private stories, check for access here
+        # entry = ActiveModel::SerializableResource.new(@story)
+
+        if (@story.public)
+            render json: @story, user_id: user
+        else
+            invited = @story.invitations.map do |invite|
+                invite.user_id
+            end
+
+            if(invited.include?(user))
+                render json: @story, user_id: user
+            else
+                render :json => {message: 'denied'}
+            end
+        end
         
-        entry = ActiveModel::SerializableResource.new(@story)
         
         # @story.new_viewer(1)
-        render json: @story, user_id: user
     end
 
     def append

@@ -2,6 +2,7 @@ class User < ApplicationRecord
     has_secure_password
     validates :username, presence: true, uniqueness: { case_sensitive: false }
     has_many :friendships
+    has_many :invitations
 
     def friends_hash 
         all_ships = Friendship.where('USER1 = ? or USER2 = ?',self.id,self.id)

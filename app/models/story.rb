@@ -3,6 +3,7 @@ class Story < ApplicationRecord
     has_many :submissions
     has_many :genre_tags
     has_many :genres, through: :genre_tags
+    has_many :invitations
 
     def canon
         return self.submissions.where('CANON = true')
