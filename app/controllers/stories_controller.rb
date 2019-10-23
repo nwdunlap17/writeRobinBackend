@@ -8,7 +8,7 @@ class StoriesController < ApplicationController
     end
 
     def public_index
-        @stories = Story.where('PUBLIC = true')
+        @stories = Story.where('PUBLIC = true').to_a
         
         user_id = get_user_from_token
 
@@ -16,7 +16,7 @@ class StoriesController < ApplicationController
             user = User.find(user_id)
 
             user.invitations.each do |invite|
-                @stories.push(Story.find(invite.story_id))
+                @stories << (Story.find(invite.story_id))
             end
         end
 

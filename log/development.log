@@ -173,3 +173,9 @@ Migrating to CreateInvitations (20191023162852)
   [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
   [1m[36mStory Load (3.0ms)[0m  [1m[34mSELECT "stories".* FROM "stories" ORDER BY "stories"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
   [1m[36mInvitation Load (0.4ms)[0m  [1m[34mSELECT "invitations".* FROM "invitations" WHERE "invitations"."story_id" = $1 LIMIT $2[0m  [["story_id", 1], ["LIMIT", 11]]
+  [1m[36mStory Load (2.6ms)[0m  [1m[34mSELECT "stories".* FROM "stories" WHERE (ID < 3) LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mStory Load (0.4ms)[0m  [1m[34mSELECT "stories".* FROM "stories" WHERE "stories"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[36mStory Load (0.6ms)[0m  [1m[34mSELECT "stories".* FROM "stories" WHERE "stories"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mStory Load (0.5ms)[0m  [1m[34mSELECT "stories".* FROM "stories" ORDER BY "stories"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mStory Load (0.7ms)[0m  [1m[34mSELECT "stories".* FROM "stories" WHERE "stories"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mStory Load (0.5ms)[0m  [1m[34mSELECT "stories".* FROM "stories" WHERE (ID < 3) LIMIT $1[0m  [["LIMIT", 11]]
