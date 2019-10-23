@@ -56,6 +56,7 @@ class UsersController < ApplicationController
         search = params[:search].downcase
 
         results = @user.friends.filter do |friend|
+            puts "#{friend.username} includes #{search}?"
             friend.username.downcase.includes(search)
         end
 
