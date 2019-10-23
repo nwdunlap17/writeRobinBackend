@@ -51,6 +51,17 @@ class UsersController < ApplicationController
 
     end
 
+    def friend_search
+        @user = User.find(get_user_from_token)
+        search = params[:search].downcase
+
+        results = @user.friends.filter do |friend|
+            friend.username.downcase.includes(search)
+        end
+
+        render :json => {results: results}
+    end
+
     private
 
     def user_params 
