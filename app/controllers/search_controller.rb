@@ -24,7 +24,7 @@ class SearchController < ApplicationController
                 b.score <=> a.score
             end
             render json: @stories, each_serializer: GroupStorySerializer
-        elsif params[:category == 'user'
+        elsif params[:category] == 'user'
             @users = User.all.filter do |user|
                 user.username.downcase.include?(term)
             end
