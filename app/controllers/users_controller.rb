@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     # skip_before_action :verify_authenticity_token, if: :json_request?
-    skip_before_action :authorized, only: [:create]
+    skip_before_action :authorized, only: [:create, :profile]
 
     def create
         @user = User.new(user_params)
