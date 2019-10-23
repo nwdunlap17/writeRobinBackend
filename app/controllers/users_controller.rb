@@ -15,19 +15,20 @@ class UsersController < ApplicationController
 
     def profile
         puts 'XJ9'
-        @user = User.find(params[:id])
-        currentUserID = get_user_from_token
+        render :json => {foo: 'bar'}
+        # @user = User.find(params[:id])
+        # currentUserID = get_user_from_token
 
-        if @user.id == currentUserID
-            #self
-            render :json => {username:@user.username, id:@user.id, friends: User.find(currentUserID).friends}
-        else
-            #other user
-            currentUser = User.find(currentUserID)
-            isFriends = currentUser.is_friends_with(params[:id])
+        # if @user.id == currentUserID
+        #     #self
+        #     render :json => {username:@user.username, id:@user.id, friends: User.find(currentUserID).friends}
+        # else
+        #     #other user
+        #     currentUser = User.find(currentUserID)
+        #     isFriends = currentUser.is_friends_with(params[:id])
 
-            render :json => {username:@user.username, id:@user.id , friended: isFriends}
-        end
+        #     render :json => {username:@user.username, id:@user.id , friended: isFriends}
+        # end
 
     end
 
