@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     end
 
     def profile
+        puts 'XJ9'
         @user = User.find(params[:id])
         currentUserID = get_user_from_token
 
