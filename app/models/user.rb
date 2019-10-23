@@ -29,7 +29,7 @@ class User < ApplicationRecord
             friends.push({username: friend.username, id: friend.id})
         end
 
-        return friends
+        return friends_ids_hash.keys
     end
 
     def is_friends_with(userID)
