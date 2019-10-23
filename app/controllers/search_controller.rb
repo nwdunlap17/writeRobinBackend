@@ -1,5 +1,7 @@
 class SearchController < ApplicationController
 
+    skip_before_action :authorized, only: [:search]
+
     def search
         term = params[:search].downcase
 
