@@ -60,7 +60,7 @@ class UsersController < ApplicationController
 
         results = @user.friends.filter do |friend|
             puts "#{friend.username} includes #{search}?"
-            friend.username.downcase.includes(search)
+            friend[:username].downcase.includes(search)
         end
 
         render :json => {results: results}
