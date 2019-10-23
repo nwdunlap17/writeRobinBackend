@@ -47,6 +47,7 @@ class StoriesController < ApplicationController
             end
             if (!@story.public)
                 GenreTag.create(story_id: @story.id, genre_id:6)
+                Invitation.create(story_id: @story.id, user_id: @authorID)
                 params[:invites].each do |invite|
                     Invitation.create(story_id: @story.id, user_id: invite)
                 end
