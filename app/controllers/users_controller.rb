@@ -17,6 +17,7 @@ class UsersController < ApplicationController
         puts 'XJ9'
         @user = User.find(params[:id])
         currentUserID = get_user_from_token
+        puts "Current User ID is #{currentUserID}"
         
 
         if @user.id == currentUserID
@@ -29,7 +30,6 @@ class UsersController < ApplicationController
 
             render :json => {username:@user.username, id:@user.id , friended: isFriends}
         end
-        puts "Current User ID is #{currentUserID}"
         render :json => {message: 'something went wrong'}
     end
 
