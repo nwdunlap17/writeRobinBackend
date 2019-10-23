@@ -10,12 +10,15 @@ class StoriesController < ApplicationController
     def public_index
         @stories = Story.where('PUBLIC = true')
         
-        user = User.find(get_user_from_token)
+        user_id = get_user_from_token
 
-        user.invitations.each do |invite|
-            @stories << Story.find(invite.story_id)
+        if (user_id > 0)
+            user = User.find(user_id)
+
+            user.invitations.each do |invite|
+                @stories.push(Story.find(invite.story_id))
+            end
         end
-        
 
         @stories = @stories.sort do |a,b|
             b.score <=> a.score
