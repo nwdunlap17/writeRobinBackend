@@ -34,7 +34,6 @@ class UsersController < ApplicationController
 
             render :json => {username:@user.username, id:@user.id , friended: isFriends}
         end
-        render :json => {message: 'something went wrong'}
     end
 
     def friend
