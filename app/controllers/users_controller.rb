@@ -25,8 +25,12 @@ class UsersController < ApplicationController
             render :json => {username:@user.username, id:@user.id, friends: User.find(currentUserID).friends}
         else
             #other user
-            currentUser = User.find(currentUserID)
-            isFriends = currentUser.is_friends_with(params[:id])
+            isFriends = false
+
+            if (currentUserID != 0)
+                currentUser = User.find(currentUserID)
+                isFriends = currentUser.is_friends_with(params[:id])
+            end
 
             render :json => {username:@user.username, id:@user.id , friended: isFriends}
         end
