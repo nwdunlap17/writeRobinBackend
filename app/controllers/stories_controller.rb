@@ -107,10 +107,10 @@ class StoriesController < ApplicationController
                 puts "ACCESS ALLOWED, invites are"
                 params[:invites].each do |invite|
                     puts "#{invite}"
-                    if (!userlist.include?(invite.to_i)){
+                    if (!userlist.include?(invite.to_i))
                         userlist << invite.to_i
                         Invitation.create(story_id: @story.id, user_id:invite.to_i)
-                    }
+                    end
                 end
             else
                  puts "ACCESS DENIED #{user} not in #{userlist}"
