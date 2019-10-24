@@ -117,8 +117,8 @@ class StoriesController < ApplicationController
         else
             puts 'STORY IS PUBLIC'
         end
-
-            newUsers = @story.invitations.map do |invite|
+            
+            newUsers = Story.find(@story.id).invitations.map do |invite|
                 id = invite.user_id
                 hash = {username: User.find(id).username, id: id}
             end
