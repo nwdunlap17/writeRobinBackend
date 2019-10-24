@@ -95,18 +95,26 @@ class StoriesController < ApplicationController
     end
 
     def newInvites
+        puts 'HIT NEW INVITES'
         user = get_user_from_token
         @story = Story.find(params[:id])
         if (@story.public == false)
+            puts 'STORY IS PRIVATE'
             userlist = @story.invitations.map do |user|
                 user.id
             end
             if(userlist.include?(user))
+                puts 'ACCESS ALLOWED'
                 params[:invites].each do |invite|
                     userlist << invite.to_i
                     Invitation.create(story_id: @story.id, user_id:invite.to_i)
                 end
+            else
+                 puts "ACCESS DENIED #{user} not in #{userlist}"
+
             end
+        else
+            puts 'STORY IS PUBLIC'
         end
 
             newUsers = @story.invitations.map do |invite|
