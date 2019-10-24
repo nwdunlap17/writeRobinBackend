@@ -94,6 +94,29 @@ class StoriesController < ApplicationController
         render :json => {message: 'done'}
     end
 
+    def newInvites
+        user = get_user_from_token
+        @story = Story.find(params[:id])
+        if (@story.public == false)
+            userlist = @story.invitations.map do |user|
+                user.id
+            end
+            if(userlist.include?(user))
+                params[:invites].each do |invite|
+                    userlist << invite.to_i
+                    Invitation.create(story_id: @story.id, user_id:invite.to_i)
+                end
+            end
+        end
+
+            newUsers = @story.invitations.map do |invite|
+                id = invite.user_id
+                hash = {username: User.find(id).username, id: id}
+            end
+
+            render :json => {invited: newUsers}
+    end
+
     private
 
     def story_params

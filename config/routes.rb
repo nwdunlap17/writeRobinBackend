@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/stories/:id/test', to: 'stories#testBroadcast'
   get '/stories/genres', to: 'stories#getGenres'
   post '/stories/:id/append', to: 'stories#append'
+  post '/stories/:id/invite', to: 'stories#newInvites'
   post '/view-story/:id', to: 'stories#view'
 
   post '/login', to: 'authentication#login'
