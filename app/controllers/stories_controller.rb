@@ -100,8 +100,8 @@ class StoriesController < ApplicationController
         @story = Story.find(params[:id])
         if (@story.public == false)
             puts 'STORY IS PRIVATE'
-            userlist = @story.invitations.map do |user|
-                user.id
+            userlist = @story.invitations.map do |invite|
+                invite.user.id
             end
             if(userlist.include?(user))
                 puts "ACCESS ALLOWED, invites are"
