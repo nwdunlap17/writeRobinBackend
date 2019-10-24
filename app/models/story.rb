@@ -92,7 +92,7 @@ class Story < ApplicationRecord
     def required_votes
 
         minimum = 3
-        if (self.public == false && self.invitations.count =< 2)
+        if (self.public == false && self.invitations.count <= 2)
             minimum = self.invitations.count
         end
 
