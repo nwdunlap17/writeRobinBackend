@@ -1,5 +1,5 @@
 class StorySerializer < ActiveModel::Serializer
-  attributes :id, :submissions, :title, :length, :current_length, :genres
+  attributes :id, :submissions, :title, :length, :current_length, :genres, :invited
 
   def submissions      
       subs = object.submissions
@@ -23,6 +23,17 @@ class StorySerializer < ActiveModel::Serializer
       end
 
       return subs
+  end
+
+  def invited
+    if(object.public == true)
+      return []
+    else
+      return object.invitations.map do |invite|
+          element = {username: invite.user.username, id: invite.user.id}
+      end
+    end
+
   end
 end
 
