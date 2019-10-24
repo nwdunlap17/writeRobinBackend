@@ -90,15 +90,24 @@ class Story < ApplicationRecord
     end
 
     def required_votes
+
+        minimum = 3
+        if (self.public == false && self.invitations.count =< 2)
+            minimum = self.invitations.count
+        end
+
         total = self.round_unique_users
 
         divisor = Math.log10(total) + 1.0
         fraction = 1/divisor
         
+        #On the fly adjustment
+        fraction = fraction * 0.75
+
         required =  total * fraction
-        # byebug
-        if required < 3
-            return 3
+
+        if required < minimum
+            return minimum
         else
             return required
         end
