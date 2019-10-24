@@ -104,8 +104,9 @@ class StoriesController < ApplicationController
                 user.id
             end
             if(userlist.include?(user))
-                puts 'ACCESS ALLOWED'
+                puts "ACCESS ALLOWED, invites are"
                 params[:invites].each do |invite|
+                    puts "#{invite}"
                     userlist << invite.to_i
                     Invitation.create(story_id: @story.id, user_id:invite.to_i)
                 end
