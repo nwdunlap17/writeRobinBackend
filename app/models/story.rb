@@ -4,6 +4,7 @@ class Story < ApplicationRecord
     has_many :genre_tags
     has_many :genres, through: :genre_tags
     has_many :invitations
+    has_many :follows, foreign_key: "following_id"
 
     def canon
         return self.submissions.where('CANON = true')
@@ -51,6 +52,8 @@ class Story < ApplicationRecord
         # byebug
         promoted.save
         self.save
+
+        notify_followers_of_update()
 
         return promoted.story.id
     end
@@ -123,5 +126,14 @@ class Story < ApplicationRecord
         end
         self.round_unique_users = hash.keys.length
         self.save
+    end
+
+    def notify_followers_of_update
+        followers = self.follows.map do |follow|
+            User.find(follow.user_id)
+        end
+        followers.each do |profile|
+            Notification.create(follow: true, user: profile, sender: 'System', content: "#{self.title} has been updated! http://writerobin.herokuapp.com/stories/#{self.id}" )
+        end
     end
 end

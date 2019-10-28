@@ -1,10 +1,5 @@
 class SubmissionsController < ApplicationController
-    skip_before_action :authorized, only: :index
-    def index
-        @subs = Submission.all 
-        render json: @subs
-
-    end
+    
 
     def create
         @story = Story.find(params[:submission][:story_id])

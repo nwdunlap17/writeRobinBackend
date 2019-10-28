@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_23_162852) do
+ActiveRecord::Schema.define(version: 2019_10_28_194836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "follows", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "following_type", null: false
+    t.bigint "following_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["following_type", "following_id"], name: "index_follows_on_following_type_and_following_id"
+  end
 
   create_table "friendships", force: :cascade do |t|
     t.integer "user1"
@@ -38,6 +47,17 @@ ActiveRecord::Schema.define(version: 2019_10_23_162852) do
   create_table "invitations", force: :cascade do |t|
     t.integer "story_id"
     t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "sender"
+    t.string "content"
+    t.boolean "invite", default: false
+    t.boolean "follow", default: false
+    t.boolean "read", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

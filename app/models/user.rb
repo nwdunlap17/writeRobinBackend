@@ -3,6 +3,8 @@ class User < ApplicationRecord
     validates :username, presence: true, uniqueness: { case_sensitive: false }
     has_many :friendships
     has_many :invitations
+    has_many :notifications
+    has_many :follows, foreign_key: "following_id"
 
     def friends_hash 
         all_ships = Friendship.where('USER1 = ? or USER2 = ?',self.id,self.id)

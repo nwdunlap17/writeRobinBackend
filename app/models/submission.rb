@@ -36,4 +36,29 @@ class Submission < ApplicationRecord
             end
         end
     end
+
+
+    def notify_users_followers_of_submission
+        author = self.user
+        followers = author.follows.map do |follow|
+            User.find(follow.user_id)
+        end
+
+        invites = []
+        if (self.story.public == false)
+            invites.map! do |invite|
+                invite.user.id
+            end
+        end
+
+        followers.each do |profile|
+            if(self.story.public)
+                Notification.create(follow: true, user: profile, sender: 'System', content: "#{author.username} has made a new post in #{self.story.title}! http://writerobin.herokuapp.com/stories/#{self.story.id}" )
+            else
+                if(invites.include?(profile.id))
+                    Notification.create(follow: true, user: profile, sender: 'System', content: "#{author.username} has made a new post in #{self.story.title}! http://writerobin.herokuapp.com/stories/#{self.story.id}" )
+                end
+            end
+        end
+    end
 end

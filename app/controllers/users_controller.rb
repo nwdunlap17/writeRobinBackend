@@ -41,6 +41,7 @@ class UsersController < ApplicationController
         to_friend = User.find(params[:id].to_i)
 
         if (!friender.is_friends_with(params[:id].to_i))
+            Notification.new(invite: true, sender: friender, user: to_friend, content: "#{friender.username} wants to be your friend!")
             Friendship.create(user1: friender.id, user2: to_friend.id)
         end
         render :json => {message: 'done'}
@@ -70,6 +71,15 @@ class UsersController < ApplicationController
         end
 
         render :json => {results: results}
+    end
+
+    def get_messages
+        user = get_user_from_token
+        if user != 0
+            render json: User.find(user).notifications
+        else
+            render :json => {message: 'not authorized'}
+        end
     end
 
     private

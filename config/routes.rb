@@ -15,7 +15,12 @@ Rails.application.routes.draw do
   post '/users/:id/profile/', to: 'users#profile'
   post '/users/:id/friend', to: 'users#friend'
   post '/users/:id/unfriend', to: 'users#unfriend'
+  post '/users/:id/follow', to: 'users#follow'
+  post '/users/:id/unfollow', to: 'users#unfollow'
+  post '/users/:id/send-message', to: 'users#send-message'
   post '/users/friend-search', to: 'users#friend_search'
+  post '/messages', to: 'users#get_messages'
+  
 
   post '/search', to: 'search#search'
 
