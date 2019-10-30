@@ -9,6 +9,20 @@ class SubmissionsController < ApplicationController
             @submit.user_id = user
             @submit.save
 
+            if (@story.public)
+                user.follows.each do |follow|
+                    Notification.create(user_id: follow.user.id, sender: 'System', content:"#{User.find(user).username} has written a new submission for #{@story.title}", sender_id: @story.id, follow: true)
+                end
+            else
+                allowed = @story.invitations.map do |invite|
+                    invite.user_id
+                end
+                user.follows.each do |follow|
+                    if(allowed.include?(follow.user_id))
+                        Notification.create(user_id: follow.user_id, sender: 'System', content:"#{User.find(user).username} has written a new submission for #{@story.title}", sender_id: @story.id, follow: true)
+                    end
+                end
+            end
 
             Vote.create(submission_id: @submit.id, user_id: user, positive: true)   
 

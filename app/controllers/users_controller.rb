@@ -97,6 +97,7 @@ class UsersController < ApplicationController
     end
 
     def unfollow
+        puts "UNFOLLOW"
         user = get_user_from_token
         be_followed = User.find(params[:id].to_i)
         if (user != 0)
