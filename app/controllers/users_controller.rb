@@ -30,9 +30,10 @@ class UsersController < ApplicationController
             if (currentUserID != 0)
                 currentUser = User.find(currentUserID)
                 isFriends = currentUser.is_friends_with(params[:id])
+                isFollowing = currentUser.is_following_user(params[:id])
             end
 
-            render :json => {username:@user.username, id:@user.id , friended: isFriends}
+            render :json => {username:@user.username, id:@user.id , friended: isFriends, following: isFollowing}
         end
     end
 
@@ -82,6 +83,29 @@ class UsersController < ApplicationController
         end
     end
 
+    def follow
+        user = get_user_from_token
+        if (user != 0)
+            alreadyFollowing = self.follows.map do |follow|
+                follow.user_id
+            end
+            if (!alreadyFollowing.include?(user))
+                Follow.create(user_id: user, following: self)
+            end
+        end
+    end
+
+    def unfollow
+        user = get_user_from_token
+        if (user != 0)
+            alreadyFollowing = self.follows.map do |follow|
+                follow.user_id
+            end
+            if (alreadyFollowing.include?(user))
+                Follow.find_by (user_id:user, following:self).delete
+            end
+        end
+    end
     private
 
     def user_params 

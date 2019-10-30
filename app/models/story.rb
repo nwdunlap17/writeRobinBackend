@@ -136,4 +136,4 @@ class Story < ApplicationRecord
             Notification.create(follow: true, user: profile, sender: 'System', content: "#{self.title} has been updated! http://writerobin.herokuapp.com/stories/#{self.id}" )
         end
     end
-end
+end 

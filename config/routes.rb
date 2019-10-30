@@ -2,10 +2,14 @@ Rails.application.routes.draw do
   mount ActionCable.server, at: '/cable'
 
   get '/home/stories', to: 'stories#public_index'
+  
   get '/stories/:id/test', to: 'stories#testBroadcast'
   get '/stories/genres', to: 'stories#getGenres'
   post '/stories/:id/append', to: 'stories#append'
   post '/stories/:id/invite', to: 'stories#newInvites'
+  post '/stories/:id/follow', to: 'stories#follow'
+  post '/stories/:id/unfollow', to: 'stories#unfollow'
+
   post '/view-story/:id', to: 'stories#view'
 
   post '/login', to: 'authentication#login'
@@ -18,6 +22,8 @@ Rails.application.routes.draw do
   post '/users/:id/follow', to: 'users#follow'
   post '/users/:id/unfollow', to: 'users#unfollow'
   post '/users/:id/send-message', to: 'users#send-message'
+  post '/users/:id/follow', to: 'users#follow'
+  post '/users/:id/unfollow', to: 'users#unfollow'
   post '/users/friend-search', to: 'users#friend_search'
   post '/messages', to: 'users#get_messages'
   
