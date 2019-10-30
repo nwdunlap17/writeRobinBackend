@@ -103,8 +103,12 @@ class UsersController < ApplicationController
             alreadyFollowing = be_followed.follows.map do |follow|
                 follow.user_id
             end
+            puts "ALREADY FOLLOWING #{alreadyFollowing}"
             if (alreadyFollowing.include?(user))
-                Follow.find_by(user_id:user, following:be_followed).delete
+                puts "ALREADY FOLLOWING DOES INCLUDE USER"
+                instance = Follow.find_by(user_id:user, following:be_followed)
+                puts "ITS ID IS #{instance.id}"
+                instance.delete
             end
         end
     end
