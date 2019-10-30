@@ -85,24 +85,26 @@ class UsersController < ApplicationController
 
     def follow
         user = get_user_from_token
+        be_followed = User.find(params[:id].to_i)
         if (user != 0)
-            alreadyFollowing = self.follows.map do |follow|
+            alreadyFollowing = be_followed.follows.map do |follow|
                 follow.user_id
             end
             if (!alreadyFollowing.include?(user))
-                Follow.create(user_id: user, following: self)
+                Follow.create(user_id: user, following: be_followed)
             end
         end
     end
 
     def unfollow
         user = get_user_from_token
+        be_followed = User.find(params[:id].to_i)
         if (user != 0)
-            alreadyFollowing = self.follows.map do |follow|
+            alreadyFollowing = be_followed.follows.map do |follow|
                 follow.user_id
             end
             if (alreadyFollowing.include?(user))
-                Follow.find_by(user_id:user, following:self).delete
+                Follow.find_by(user_id:user, following:be_followed).delete
             end
         end
     end
