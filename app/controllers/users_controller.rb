@@ -102,7 +102,7 @@ class UsersController < ApplicationController
                 follow.user_id
             end
             if (alreadyFollowing.include?(user))
-                Follow.find_by (user_id:user, following:self).delete
+                Follow.find_by(user_id:user, following:self).delete
             end
         end
     end
