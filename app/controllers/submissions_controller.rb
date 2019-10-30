@@ -9,8 +9,10 @@ class SubmissionsController < ApplicationController
             @submit.user_id = user
             @submit.save
 
+            puts "NEW submission"
             if (@story.public)
                 user.follows.each do |follow|
+                    puts "Creasting follow notification for #{follow}"
                     Notification.create(user_id: follow.user.id, sender: 'System', content:"#{User.find(user).username} has written a new submission for #{@story.title}", sender_id: @story.id, follow: true)
                 end
             else
