@@ -46,7 +46,6 @@ class User < ApplicationRecord
     def is_following_user(userID)
         userID = userID.to_i
         follow = Follow.find_by(user_id: self.id, following_type: "User", following_id: userID
-        result = !!follow
-        return result
+        return (follow != nil)
     end
 end
