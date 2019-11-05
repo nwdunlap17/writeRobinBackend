@@ -133,7 +133,7 @@ class Story < ApplicationRecord
             User.find(follow.user_id)
         end
         followers.each do |profile|
-            Notification.create(follow: true, user: profile, sender: 'System', content: "#{self.title} has been updated! http://writerobin.herokuapp.com/stories/#{self.id}" )
+            Notification.create(follow: true, user: profile.id, sender: 'System', content: "#{self.title} has been updated! http://writerobin.herokuapp.com/stories/#{self.id}" )
         end
     end
 end 

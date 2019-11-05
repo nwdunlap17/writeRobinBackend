@@ -53,10 +53,10 @@ class Submission < ApplicationRecord
 
         followers.each do |profile|
             if(self.story.public)
-                Notification.create(follow: true, user: profile, sender: 'System', content: "#{author.username} has made a new post in #{self.story.title}! http://writerobin.herokuapp.com/stories/#{self.story.id}" )
+                Notification.create(follow: true, user_id: profile.id, sender: 'System', content: "#{author.username} has made a new post in #{self.story.title}! http://writerobin.herokuapp.com/stories/#{self.story.id}" )
             else
                 if(invites.include?(profile.id))
-                    Notification.create(follow: true, user: profile, sender: 'System', content: "#{author.username} has made a new post in #{self.story.title}! http://writerobin.herokuapp.com/stories/#{self.story.id}" )
+                    Notification.create(follow: true, user_id: profile.id, sender: 'System', content: "#{author.username} has made a new post in #{self.story.title}! http://writerobin.herokuapp.com/stories/#{self.story.id}" )
                 end
             end
         end
