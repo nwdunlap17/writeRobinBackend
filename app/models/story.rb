@@ -40,13 +40,18 @@ class Story < ApplicationRecord
         promoted.canon = true
         promoted.save
         # byebug
+        setToPosition = 1
         self.submissions.each do |sub|
             if sub.canon == false && sub.id != promoted.id
                 sub.destroy
             end
+            if sub.canon == true
+                setToPosition += 1
+            end
         end
         # byebug
-        promoted.position = self.submissions.length
+        
+        promoted.position = setToPosition
         
         self.round_unique_users = 0
         # byebug
