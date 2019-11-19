@@ -77,7 +77,7 @@ class UsersController < ApplicationController
     def get_messages
         user = get_user_from_token
         if user != 0
-            render json: User.find(user).notifications
+            render json: User.find(user).notifications.reverse
         else
             render :json => {message: 'not authorized'}
         end
