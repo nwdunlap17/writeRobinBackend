@@ -14,11 +14,15 @@ class UsersController < ApplicationController
     end
 
     def profile
-        puts 'XJ9'
         @user = User.find(params[:id])
         currentUserID = get_user_from_token
         puts "Current User ID is #{currentUserID}"
         
+        numFollowers = Follow.all.select do |follow|
+            (follow.following_id == @user.id) && (following_type == 'User')
+        end
+        numFollowers = numFollowers.count
+        puts "Has #{numFollowers} Followers"
 
         if @user.id == currentUserID
             #self
