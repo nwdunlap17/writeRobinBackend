@@ -19,7 +19,8 @@ class UsersController < ApplicationController
         puts "Current User ID is #{currentUserID}"
         
         numFollowers = Follow.all.select do |follow|
-            (follow.following_id == @user.id) && (following_type == 'User')
+            follow.following == @user
+            # (follow.following_id == @user.id) && (following_type == 'User')
         end
         numFollowers = numFollowers.count
         puts "Has #{numFollowers} Followers"
