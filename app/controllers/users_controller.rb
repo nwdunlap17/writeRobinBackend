@@ -84,7 +84,7 @@ class UsersController < ApplicationController
         puts params
         @user = User.find(get_user_from_token)
         @recipient = User.find(params[:id])
-        @message = Notification.new(user_id: @recipient.id, sender: @user,content: params[:content])
+        @message = Notification.new(user_id: @recipient.id, sender: @user.username, sender_id: @user.id,content: params[:content])
         @message.save
     end
 
