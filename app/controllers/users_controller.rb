@@ -82,7 +82,12 @@ class UsersController < ApplicationController
     def get_messages
         user = get_user_from_token
         if user != 0
-            render json: User.find(user).notifications.reverse
+            messages = User.find(user).notifications.reverse
+            messages.each do |note|
+                note.read = true
+                note.save
+            end
+            render json: messages
         else
             render :json => {message: 'not authorized'}
         end
