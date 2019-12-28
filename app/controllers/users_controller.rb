@@ -79,6 +79,13 @@ class UsersController < ApplicationController
         render :json => {results: results}
     end
 
+    def send_message
+        @user = User.find(get_user_from_token)
+        @recipient = User.find(params[:id])
+        @message = Notification.new(user_id: @user.id, sender: @user,content: params[:content], invite: false, follow: false, read: false)
+        @message.save
+    end
+
     def get_messages
         user = get_user_from_token
         if user != 0

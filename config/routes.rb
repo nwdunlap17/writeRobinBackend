@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   post '/users/:id/unfriend', to: 'users#unfriend'
   post '/users/:id/follow', to: 'users#follow'
   post '/users/:id/unfollow', to: 'users#unfollow'
-  post '/users/:id/send-message', to: 'users#send-message'
+  post '/users/:id/send-message', to: 'users#send_message'
   post '/users/:id/follow', to: 'users#follow'
   post '/users/:id/unfollow', to: 'users#unfollow'
   post '/users/friend-search', to: 'users#friend_search'
